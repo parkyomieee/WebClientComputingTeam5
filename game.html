@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>게임</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/game-style.css">
+    <title>게임</title>
 </head>
 <body>
-  <script src="js/game.js"></script>
+    <header class="page-header">PlaceHolder</header>
+    
+    <section class="game-content" id="game-main">
+        <div class="game-title">음식 맞추기</div>
+        <div class="game-grid-container">
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+        </div>
+        <ol class="game-select">
+            <li class="game-select-opt">PlaceHolder</div>
+            <li class="game-select-opt">PlaceHolder</div>
+            <li class="game-select-opt">PlaceHolder</div>
+            <li class="game-select-opt">PlaceHolder</div>
+        </ol>
+    </section>
+
+    <section class="game-content hidden" id="game-end">
+        <div class="game-title">정답 공개</div>
+        <div><img class="game-food-image" src="./assets/image/game/placeholder.png" alt="food_image"></div>
+        <div class="game-result"><span class="game-result-succ">(성공! or 실패!)</span> <span> </span> <span class="game-result-menu">메뉴명</span></div>
+        <button class="recipe-redirect-btn">레시피 보러가기</button>
+    </section>
+
+    <script src="js/game.js"></script>
 </body>
 </html>

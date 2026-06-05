@@ -1,0 +1,305 @@
+:root {
+    --main-color: #F76E11;
+    --sub-color-1: #FF9F45;
+    --sub-color-2: #FFBC80;
+    --point-color-1: #FC4F4F;
+    --point-color-2: #80D6FF;
+    --point-color-3: #5BE7A9;
+
+    --black-text-color: #000000;
+    --white-text-color: #FFFFFF;
+
+}
+
+/*-------------------------------------*/
+/* 웹사이트 공용 */
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard.woff2') format('woff2');
+    font-weight: 100;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Pretendard';
+}
+
+.page-header {
+    display: flex;
+    padding: 12px;
+
+    width: 100%;
+    background-color: var(--main-color);
+    color: var(--white-text-color);
+    font-size: 32px;
+    font-weight: 900;
+}
+
+/*-------------------------------------*/
+/* 게임 페이지 공용 */
+.game-content {
+    width: 100%;
+    padding: 32px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.game-title {
+    color: var(--black-text-color);
+    font-weight: 700;
+    font-size: 32px;
+}
+
+
+/*-------------------------------------*/
+/* 맞추기 게임용 */
+.game-select {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    justify-content: space-between;
+}
+
+.game-select-opt {
+    width: 50%;
+    padding: 22px;
+    font-weight: 700;
+
+    color: var(--black-text-color);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 520px) {
+    /*  .game-food-image {aspect-ratio: 4 / 3;} */
+    .game-select-opt { width: 100%; }
+}
+
+.game-grid-container {
+    aspect-ratio: 16 / 9;
+    width: 80%;
+    min-width: 300px;
+    max-width: 800px;
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.game-grid-element {
+    width: 100%;
+    height: 100%;
+}
+
+.effect-blur {
+    animation: blur var(--random-duration) ease-in-out reverse;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blur{
+    0% {filter: blur(15px);  }
+    50% {filter: blur(5px);}
+    100% {filter: blur(15px);}
+}
+
+.effect-blank {
+    animation: blur var(--random-duration) ease-out forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rot{
+    0% {transform: rotateX(0);}
+    50% {transform: rotateX(180);}
+    100% {transform: rotateX(360);}
+}
+
+
+/*-------------------------------------*/
+/* 맞추기 게임 결과 */
+.game-result {
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.game-result-menu {
+    color: var(--black-text-color);
+}
+
+.recipe-redirect-btn {
+    width: 50%;
+    padding: 6px;
+
+    border-radius: 10px;
+    border-color: var(--point-color-3);
+    background-color: var(--point-color-3);
+
+    color: var(--white-text-color);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.game-food-image {
+    aspect-ratio: 16 / 9;
+    width: 80%;
+    min-width: 300px;
+    max-width: 800px;
+    object-fit: cover;
+}
+
+.win {
+    color: #80D6FF;
+}
+.lose {
+    color: #FC4F4F;
+}
+
+/*-------------------------------------*/
+/* 팀 페이지용 */
+.team-content {
+    width: 100%;
+    padding: 48px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    text-align: center;
+}
+
+.team-content-title {
+    color: var(--black-text-color);
+    font-weight: 700;
+    font-size: 32px;
+}
+
+.team-introduce {
+    color: var(--black-text-color);
+    font-size: 18px;
+    max-width: 700px;
+}
+
+.team-worker-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    padding: 5px;
+    gap: 20px;
+}
+
+
+.team-worker-card {
+    border: 1px var(--sub-color-1) solid;
+    border-radius: 5px;
+
+    width: 200px;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-worker-photo {
+    padding: 10px 0px;
+    width: 160px;
+    height: 180px;
+
+}
+
+.team-worker-name {
+    font-weight: 700;
+    font-size: 24px;
+    padding: 10px 0px 3px 0px;
+}
+
+.team-worker-introduce {
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+.team-worker-link {
+    padding-bottom: 5px;
+    font-size: 14px;
+    color: #AAAAAA;
+}
+
+.team-worker-link > a:hover {
+    font-size: 14px;
+    color: #AAAAAA;
+}
+.team-worker-link > a {
+    text-decoration:  none;
+    font-size: 14px;
+    color: #AAAAAA;
+}
+
+@media (max-width: 520px) {
+    .team-worker-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .team-worker-card {
+        width: 100%;
+        padding: 0px 5px;
+
+        display: grid;
+        grid-template-columns: 160px auto;
+        grid-template-rows: 40px auto 40px;
+
+    }
+    .team-worker-photo {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 4;
+
+    }
+    .team-worker-name {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+
+        padding: 20px 0px 0px 10px;
+        text-align: left;
+    }
+    .team-worker-introduce {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+
+        padding: 0px 0px 0px 10px;
+        text-align: left;
+    }
+    .team-worker-link {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+
+        padding: 0px 0px 0px 10px;
+        text-align: left;
+    }
+}
