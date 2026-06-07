@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>오늘 뭐 먹지? - 게임</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="css/game-style.css" />
     <link rel="stylesheet" href="css/game-tournament.css" />
     <link rel="stylesheet" href="css/game-roulette.css" />
-</head>
-<body>
+  </head>
+  <body>
     <header>
       <div id="header">
         <div id="title">오늘 뭐 먹지?</div>
@@ -29,69 +29,79 @@
     </header>
 
     <main>
-    <section id="roulette-game" class="game-panel">
+      <section id="roulette-game" class="game-panel">
         <div class="game-content">
-            <h2 class="roulette-heading">🎰 룰렛 게임</h2>
-            <p class="roulette-desc">룰렛을 돌려 오늘의 메뉴를 정해 보세요!</p>
+          <h2 class="roulette-heading">🎰 룰렛 게임</h2>
+          <p class="roulette-desc">룰렛을 돌려 오늘의 메뉴를 정해 보세요!</p>
 
-            <div class="roulette-board">
-                <div class="roulette-pointer" aria-hidden="true"></div>
-                <div id="roulette-wheel" class="roulette-wheel"></div>
-                <div class="roulette-center-cap" aria-hidden="true">🍽️</div>
+          <div class="roulette-board">
+            <div class="roulette-pointer" aria-hidden="true"></div>
+            <div id="roulette-wheel" class="roulette-wheel"></div>
+            <div class="roulette-center-cap" aria-hidden="true">🍽️</div>
+          </div>
+
+          <p id="roulette-result" class="roulette-result">
+            버튼을 눌러 룰렛을 돌려보세요
+          </p>
+          <button
+            type="button"
+            id="roulette-spin-btn"
+            class="roulette-spin-btn"
+          >
+            룰렛 돌리기
+          </button>
+          <a id="roulette-form-link" class="roulette-form-link hidden" href="#"
+            >레시피 추천 받기</a
+          >
+        </div>
+      </section>
+
+      <section id="tournament-game" class="game-panel">
+        <div class="game-content">
+          <h2 class="title" id="tournament-title">음식 토너먼트</h2>
+          <p class="round-info" id="round-info">1/4</p>
+
+          <div class="match-container">
+            <div class="food-card" id="left-card">
+              <div class="image-placeholder" id="left-img"></div>
+              <div class="food-name" id="left-name">음식 1</div>
             </div>
 
-            <p id="roulette-result" class="roulette-result">버튼을 눌러 룰렛을 돌려보세요</p>
-            <button type="button" id="roulette-spin-btn" class="roulette-spin-btn">룰렛 돌리기</button>
-            <a id="roulette-form-link" class="roulette-form-link hidden" href="#">레시피 선택하기</a>
-        </div>
-    </section>
+            <div class="vs-text">VS</div>
 
-    <section id="tournament-game" class="game-panel">
-        <div class="game-content">
-            <h2 class="title" id="tournament-title">음식 토너먼트</h2>
-            <p class="round-info" id="round-info">1/4</p>
-
-            <div class="match-container">
-                <div class="food-card" id="left-card">
-                    <div class="image-placeholder" id="left-img"></div>
-                    <div class="food-name" id="left-name">음식 1</div>
-                </div>
-
-                <div class="vs-text">VS</div>
-
-                <div class="food-card" id="right-card">
-                    <div class="image-placeholder" id="right-img"></div>
-                    <div class="food-name" id="right-name">음식 2</div>
-                </div>
+            <div class="food-card" id="right-card">
+              <div class="image-placeholder" id="right-img"></div>
+              <div class="food-name" id="right-name">음식 2</div>
             </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <section id="guess-game" class="game-panel">
+      <section id="guess-game" class="game-panel">
         <section class="game-content" id="game-main">
-            <div class="game-title">음식 맞추기</div>
-            <div class="game-grid-container">
-                <div class="game-grid-element"></div>
-                <div class="game-grid-element"></div>
-                <div class="game-grid-element"></div>
-                <div class="game-grid-element"></div>
+          <div class="game-title">음식 맞추기</div>
+          <div class="game-grid-container">
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
 
-                <div class="game-grid-element"></div>
-                <div class="game-grid-element"></div>
-                <div class="game-grid-element"></div>
-                <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
 
-                <div class="game-grid-element"></div>
-                <div class="game-grid-element"></div>
-                <div class="game-grid-element"></div>
-                <div class="game-grid-element"></div>
-            </div>
-            <ol class="game-select">
-                <li class="game-select-opt">PlaceHolder</li>
-                <li class="game-select-opt">PlaceHolder</li>
-                <li class="game-select-opt">PlaceHolder</li>
-                <li class="game-select-opt">PlaceHolder</li>
-            </ol>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+            <div class="game-grid-element"></div>
+          </div>
+          <ol class="game-select">
+            <li class="game-select-opt">PlaceHolder</li>
+            <li class="game-select-opt">PlaceHolder</li>
+            <li class="game-select-opt">PlaceHolder</li>
+            <li class="game-select-opt">PlaceHolder</li>
+          </ol>
         </section>
     </section>
     </main>
@@ -106,17 +116,17 @@
     </div>
 
     <div class="modal-overlay" id="winner-modal">
-        <div class="modal-content">
-            <h2 class="modal-title">축하합니다! 🏆</h2>
-            <p class="modal-sub">오늘의 우승 메뉴</p>
+      <div class="modal-content">
+        <h2 class="modal-title">축하합니다! 🏆</h2>
+        <p class="modal-sub">오늘의 우승 메뉴</p>
 
-            <div class="winner-display">
-                <div class="image-placeholder" id="winner-img"></div>
-                <div class="food-name" id="winner-name">우승 음식</div>
-            </div>
-
-            <a href="#" class="shortcut-btn" id="shortcut-link">레시피 가기</a>
+        <div class="winner-display">
+          <div class="image-placeholder" id="winner-img"></div>
+          <div class="food-name" id="winner-name">우승 음식</div>
         </div>
+
+        <a href="#" class="shortcut-btn" id="shortcut-link">레시피 가기</a>
+      </div>
     </div>
 
     <script src="js/main.js"></script>
@@ -124,5 +134,5 @@
     <script src="js/tournament-game.js"></script>
     <script src="js/roulette-game.js"></script>
     <script src="js/game.js"></script>
-</body>
+  </body>
 </html>

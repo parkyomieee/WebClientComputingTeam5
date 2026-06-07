@@ -1,0 +1,165 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* 화면 전체 컨테이너*/
+.container {
+    width: 100%;
+    max-width: 1000px;
+    background-color: #ffffff;
+    min-height: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/*  헤더  */
+.header-bar {
+    background-color: #F76E11; 
+    color: #ffffff;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-bar .logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.header-bar .game-tag {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* 게임 콘텐츠 레이아웃 */
+.game-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+.game-content .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 5px;
+}
+
+.game-content .round-info {
+    font-size: 20px;
+    font-weight: bold;
+    color: #666666;
+    margin-bottom: 40px;
+}
+
+/* 고르는 것 */
+.match-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* 음식 카드 스타일 */
+.food-card {
+    background: #ffffff;
+    border: 2px solid #F76E11;
+    border-radius: 8px;
+    padding: 24px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.food-card:hover {
+    transform: translateY(-5px);
+    border-color: #ff7a00;
+}
+
+/* 이미지 들어갈 자리 (X 박스 구현) */
+.image-placeholder {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #cccccc;
+    position: relative;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+}
+
+.image-placeholder svg {
+    width: 100%;
+    height: 100%;
+    stroke: #dddddd;
+    stroke-width: 1;
+}
+
+/* 음식 텍스트 */
+.food-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #222222;
+}
+
+/*  VS  */
+.vs-text {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333333;
+    padding: 0 10px;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+    .match-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .vs-text {
+        margin: 10px 0;
+    }
+}
+
+/*  결과 창 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+}
+
+/* 결과 창나올 때 */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}

@@ -123,3 +123,13 @@
 .shortcut-btn:hover {
   background-color: var(--sub-color-1);
 }
+
+@media (max-width: 768px) {
+    .match-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .vs-text {
+        margin: 10px 0;
+    }
+}

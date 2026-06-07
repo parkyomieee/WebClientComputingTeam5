@@ -6,6 +6,9 @@ const customFieldset = document.querySelector("#customFieldset");
 const customFields = document.querySelector("#customFields");
 const selectedMenuName = document.querySelector("#selectedMenuName");
 const gameSource = document.querySelector("#gameSource");
+const spicyGuide = document.querySelector('.spicy-guide');
+
+if (spicyGuide) spicyGuide.classList.remove('visible');
 
 const menuForms = {
   tteokbokki: {
@@ -19,13 +22,13 @@ const menuForms = {
       },
       {
         id: "saltyLevel",
-        label: "짠 정도",
+        label: "염도",
         options: ["싱겁게", "보통", "짭짤하게"],
       },
       {
-        id: "tteokType",
-        label: "떡 종류",
-        options: ["밀떡", "쌀떡", "상관없음"],
+        id: "topping",
+        label: "토핑",
+        options: ["햄", "양배추", "치즈", "소시지", "차돌박이", "김말이", "만두", "오뎅"],
       },
     ],
   },
@@ -41,12 +44,12 @@ const menuForms = {
       {
         id: "topping",
         label: "토핑",
-        options: ["고기", "햄", "둘 다"],
+        options: ["햄", "참치", "소시지", "돼지고기", "치즈", "양파", "당근", "김가루"],
       },
       {
         id: "eggStyle",
         label: "계란",
-        options: ["없음", "반숙 계란", "완숙 계란"],
+        options: ["없음", "반숙", "완숙"],
       },
     ],
   },
@@ -61,13 +64,18 @@ const menuForms = {
       },
       {
         id: "saltyLevel",
-        label: "짠 정도",
+        label: "염도",
         options: ["싱겁게", "보통", "짭짤하게"],
       },
       {
-        id: "rootVegetable",
-        label: "구황작물",
-        options: ["감자", "고구마", "둘 다"],
+        id: "topping",
+        label: "토핑",
+        options: ["감자", "고구마", "떡", "라면사리", "당면", "파", "당근", "무"],
+      },
+      {
+        id: "endMeal",
+        label: "볶음밥",
+        options: ["없음", "볶음밥 추가"],
       },
     ],
   },
@@ -76,19 +84,19 @@ const menuForms = {
     recipeUrl: "recipe.html",
     fields: [
       {
-        id: "saltyLevel",
-        label: "짠 정도",
-        options: ["싱겁게", "보통", "짭짤하게"],
-      },
-      {
         id: "brothType",
         label: "육수 종류",
-        options: ["맑은 육수", "얼큰 육수", "반반 육수"],
+        options: ["맑은 육수", "얼큰한 육수", "스키야키 육수", "마라 육수"],
       },
       {
-        id: "finishMeal",
+        id: "sauce",
+        label: "소스",
+        options: ["폰즈 소스", "스위트 칠리 소스", "탕콩 소스", "참소스"],
+      },
+      {
+        id: "endMeal",
         label: "마무리 식사",
-        options: ["칼국수", "죽", "둘 다"],
+        options: ["볶음밥", "칼국수", "죽"],
       },
     ],
   },
@@ -97,19 +105,19 @@ const menuForms = {
     recipeUrl: "recipe.html",
     fields: [
       {
-        id: "salinity",
+        id: "spicyLevel",
+        label: "맵기 단계",
+        options: ["안 맵게", "보통", "칼칼하게"],
+      },
+      {
+        id: "saltyLevel",
         label: "염도",
-        options: ["낮게", "보통", "높게"],
+        options: ["싱겁게", "보통", "짭짤하게"],
       },
       {
-        id: "mainIngredient",
-        label: "주재료",
-        options: ["소고기", "바지락", "두부"],
-      },
-      {
-        id: "spicyPepper",
-        label: "고추",
-        options: ["빼기", "조금", "넉넉하게"],
+        id: "topping",
+        label: "토핑",
+        options: ["두부", "돼지고기", "차돌박이", "양파", "호박", "감자", "버섯", "바지락"],
       },
     ],
   },
@@ -123,14 +131,14 @@ const menuForms = {
         options: ["순한맛", "보통맛", "매운맛"],
       },
       {
-        id: "salinity",
+        id: "saltyLevel",
         label: "염도",
-        options: ["낮게", "보통", "높게"],
+        options: ["싱겁게", "보통", "짭짤하게"],
       },
       {
-        id: "mainProtein",
-        label: "주재료",
-        options: ["돼지고기", "참치", "스팸"],
+        id: "topping",
+        label: "토핑",
+        options: ["두부", "햄", "돼지고기", "차돌박이", "양파", "라면사리", "만두", "떡"],
       },
     ],
   },
@@ -139,19 +147,19 @@ const menuForms = {
     recipeUrl: "recipe.html",
     fields: [
       {
-        id: "salinity",
-        label: "염도",
-        options: ["낮게", "보통", "높게"],
-      },
-      {
-        id: "soupType",
-        label: "미역국 종류",
-        options: ["조개 미역국", "고기 미역국"],
-      },
-      {
         id: "soupAmount",
         label: "국물 양",
         options: ["자작하게", "보통", "넉넉하게"],
+      },
+      {
+        id: "saltyLevel",
+        label: "염도",
+        options: ["싱겁게", "보통", "짭짤하게"],
+      },
+      {
+        id: "topping",
+        label: "토핑",
+        options: ["조개", "소고기", "굴", "들깨", "옹심이", "황태", "표고버섯", "두부"],
       },
     ],
   },
@@ -160,19 +168,24 @@ const menuForms = {
     recipeUrl: "recipe.html",
     fields: [
       {
-        id: "spicyIngredient",
+        id: "spicyTopping",
         label: "매운 재료",
-        options: ["페퍼론치노", "고춧가루", "둘 다", "없음"],
+        options: ["없음", "페페론치노", "고춧가루", "둘 다"],
       },
       {
-        id: "herbIngredient",
+        id: "herb",
         label: "향 재료",
-        options: ["파슬리", "대파", "둘 다", "없음"],
+        options: ["없음", "파슬리", "대파", "둘 다"],
       },
       {
-        id: "extraIngredient",
-        label: "추가 재료",
-        options: ["베이컨", "새우", "버섯", "없음"],
+        id: "saltyLevel",
+        label: "염도",
+        options: ["싱겁게", "보통", "짭짤하게"],
+      },
+      {
+        id: "topping",
+        label: "토핑",
+        options: ["베이컨", "새우", "양파", "양송이버섯", "바지락", "방울토마토", "브로콜리", "치즈"],
       },
     ],
   },
@@ -220,6 +233,22 @@ if (!form) {
     `;
       })
       .join("");
+
+    if (spicyGuide) {
+      spicyGuide.classList.remove('visible');
+      const spicyFieldDef = menu.fields.find((f) => f.id === 'spicyLevel');
+      if (spicyFieldDef) {
+        const spicySelect = document.getElementById('spicyLevel');
+        if (spicySelect && !spicySelect.dataset.guideAttached) {
+          const showGuide = () => spicyGuide.classList.add('visible');
+          const hideGuide = () => spicyGuide.classList.remove('visible');
+          spicySelect.addEventListener('focus', showGuide);
+          spicySelect.addEventListener('click', showGuide);
+          spicySelect.addEventListener('blur', () => setTimeout(hideGuide, 140));
+          spicySelect.dataset.guideAttached = 'true';
+        }
+      }
+    }
   }
 
   function getSelectedOptions(menuKey) {

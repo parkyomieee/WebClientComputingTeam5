@@ -25,11 +25,17 @@
       </div>
     </header>
     <main>
-      <div id="gameSelector">
-        <div id="foodGame">
-          <div id="foodGamePicture"></div>
-          <div>🍽️ 음식 맞추기 게임</div>
+      <div id="fortuneCookie">
+        <div id="cookiePicture"></div>
+        <div id="cookieContent">
+          <p id="cookieLabel">✨ 오늘의 운세</p>
+          <p id="cookieText">🥠 포춘 쿠키 뽑기</p>
+          <p id="cookieDesc">🍀 쿠키를 열고 오늘의 메시지를 확인해 보세요</p>
         </div>
+        <span id="cookieArrow" aria-hidden="true"></span>
+      </div>
+
+      <div id="gameSelector">
         <div id="rouletteGame">
           <div id="rouletteGamePicture"></div>
           <div>🎰 룰렛 게임</div>
@@ -38,7 +44,12 @@
           <div id="tournamentGamePicture"></div>
           <div>🏆 토너먼트 게임</div>
         </div>
+        <div id="foodGame">
+          <div id="foodGamePicture"></div>
+          <div>🍽️ 음식 맞추기 게임</div>
+        </div>
       </div>
+
       <div id="representativeMenu">
         <div>📋 메뉴 추천</div>
         <div id="menuList">
@@ -75,15 +86,6 @@
             <div id="eighthMenuText">🍝 알리오올리오 파스타</div>
           </div>
         </div>
-      </div>
-      <div id="fortuneCookie">
-        <div id="cookiePicture"></div>
-        <div id="cookieContent">
-          <p id="cookieLabel">✨ 오늘의 운세</p>
-          <p id="cookieText">🥠 포춘 쿠키 뽑기</p>
-          <p id="cookieDesc">🍀 쿠키를 열고 오늘의 메시지를 확인해 보세요</p>
-        </div>
-        <span id="cookieArrow" aria-hidden="true"></span>
       </div>
     </main>
     <script src="js/main.js"></script>

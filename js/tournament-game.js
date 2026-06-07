@@ -21,6 +21,9 @@ const winnerImg = document.getElementById("winner-img");
 const winnerName = document.getElementById("winner-name");
 const shortcutLink = document.getElementById("shortcut-link");
 
+//
+const gameHeader = document.getElementById("tournament-title");
+
 let currentRound = [];
 let nextRound = [];
 let matchIndex = 0;
@@ -44,6 +47,12 @@ function getFoodImage(name) {
 function setFoodCard(imgEl, nameEl, food) {
   imgEl.style.backgroundImage = `url(${getFoodImage(food.name)})`;
   nameEl.textContent = food.name;
+}
+
+// 8강, 4
+function getRoundName(count) {
+  if (count === 2) return "결승전";
+  return `${count}강`;
 }
 
 function updateRoundInfo() {
@@ -94,8 +103,10 @@ function pickWinner(side) {
   startRound(nextRound);
 }
 
+//  초기화  (새로고침,헤더 클릭 시)
 function initTournament() {
   if (!leftCard || !rightCard) return;
+  if (winnerModal) winnerModal.classList.remove("show"); // 모달 닫기
   startRound(shuffle(tournamentFoods));
 }
 
@@ -107,11 +118,14 @@ if (rightCard) {
   rightCard.addEventListener("click", () => pickWinner("right"));
 }
 
+// 
 if (winnerModal) {
-  winnerModal.addEventListener("click", () => {
-    winnerModal.classList.remove("show");
+  winnerModal.addEventListener("click", (event) => {
+    if (event.target === winnerModal) {
+      winnerModal.classList.remove("show");
+    }
   });
-
+  
   const modalContent = winnerModal.querySelector(".modal-content");
   if (modalContent) {
     modalContent.addEventListener("click", (event) => {

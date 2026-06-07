@@ -1,311 +1,809 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>오늘 뭐 먹지? - 레시피</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/recipe.css">
-</head>
-<body>
-
-<header>
-  <div id="header">
-    <div id="title">오늘 뭐 먹지?</div>
-    <div id="nav">
-      <div>룰렛 게임</div>
-      <div>토너먼트 게임</div>
-      <div>음식 맞추기 게임</div>
-      <div>팀 소개</div>
-    </div>
-  </div>
-</header>
-
-<main id="recipePage">
-  <div class="breadcrumb">
-    <a href="index.html">홈</a>
-    <span>›</span>
-    <a href="index.html#recipes">레시피</a>
-    <span>›</span>
-    <span id="breadcrumb-name">-</span>
-  </div>
-
-  <div class="recipe-layout">
-    <div class="recipe-body">
-    <a class="btn-back" href="index.html">← 레시피 목록으로</a>
-
-    <!-- HERO CARD -->
-    <div class="recipe-hero">
-      <div class="hero-image-placeholder" id="hero-placeholder">
-        <span id="hero-emoji">🍳</span>
-        <p>음식 사진 영역</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오늘 뭐 먹지? - 레시피</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/recipe.css" />
+  </head>
+  <body>
+    <header>
+      <div id="header">
+        <div id="title">오늘 뭐 먹지?</div>
+        <div id="nav">
+          <div>룰렛 게임</div>
+          <div>토너먼트 게임</div>
+          <div>음식 맞추기 게임</div>
+          <div>팀 소개</div>
+        </div>
       </div>
-      <img class="hero-image" id="hero-img" src="" alt="" style="display:none;">
+    </header>
 
-      <div class="hero-info">
-        <span class="recipe-category" id="recipe-category">-</span>
-        <h1 class="recipe-title" id="recipe-title">-</h1>
-        <p class="recipe-desc" id="recipe-desc">-</p>
+    <main id="recipePage">
+      <div class="breadcrumb">
+        <a href="index.html">홈</a>
+        <span>›</span>
+        <a href="index.html#recipes">레시피</a>
+        <span>›</span>
+        <span id="breadcrumb-name">-</span>
+      </div>
 
-        <div class="meta-row">
-          <div class="meta-chip">
-            <span class="icon">⏱️</span> 조리시간 <strong id="meta-time">-</strong>
+      <a
+        class="btn-back"
+        href="index.html"
+        style="display: inline-flex; margin-left: 0; text-align: left"
+        >← 레시피 목록으로</a
+      >
+
+      <div class="recipe-layout">
+        <div class="recipe-body">
+          <div class="recipe-hero">
+            <div class="hero-image-placeholder" id="hero-placeholder">
+              <span id="hero-emoji">🍳</span>
+              <p>음식 사진 영역</p>
+            </div>
+
+            <img
+              class="hero-image"
+              id="hero-img"
+              src=""
+              alt=""
+              style="display: none"
+            />
+
+            <div class="hero-info">
+              <span class="recipe-category" id="recipe-category">-</span>
+              <h1 class="recipe-title" id="recipe-title">-</h1>
+              <p class="recipe-desc" id="recipe-desc">-</p>
+
+              <div class="meta-row">
+                <div class="meta-chip">
+                  <span class="icon">⏱️</span>
+                  조리시간
+                  <strong id="meta-time">-</strong>
+                </div>
+                <div class="meta-chip">
+                  <span class="icon">🍽️</span>
+                  <strong id="serving-display">1</strong>인분
+                </div>
+              </div>
+
+              <div class="difficulty-row">
+                <span class="stars" id="meta-difficulty">★☆☆</span>
+                <span class="diff-label" id="meta-diff-label">난이도: -</span>
+              </div>
+
+              <div
+                class="selected-options"
+                id="selected-options"
+                style="display: none"
+              >
+                <p class="selected-options-title">✅ 선택하신 옵션</p>
+                <div class="options-tags" id="options-tags"></div>
+              </div>
+
+              <div class="action-row">
+                <button
+                  class="btn-action"
+                  type="button"
+                  onclick="window.print()"
+                >
+                  🖨️ 인쇄 / PDF 저장
+                </button>
+                <button
+                  class="btn-action"
+                  type="button"
+                  onclick="shareRecipe()"
+                >
+                  🔗 공유하기
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="meta-chip">
-            <span class="icon">🍽️</span>
-            <strong id="serving-display">1</strong>인분
+
+          <div class="section-card" id="option-tips-card" style="display: none">
+            <h2 class="section-title">
+              <span class="s-icon">🎛️</span>
+              선택 옵션 조리 가이드
+            </h2>
+            <div class="tips-wrap" id="option-tips-wrap"></div>
+          </div>
+
+          <div class="section-card">
+            <h2 class="section-title">
+              <span class="s-icon">🥕</span>
+              재료 목록
+              <span class="serving-badge" id="serving-badge">1인분 기준</span>
+            </h2>
+            <ul class="ingredient-list" id="ingredient-list"></ul>
+          </div>
+
+          <div class="section-card">
+            <h2 class="section-title">
+              <span class="s-icon">📏</span>
+              계량 단위 기준표
+            </h2>
+            <table class="measure-table">
+              <thead>
+                <tr>
+                  <th>단위</th>
+                  <th>ml / g 환산</th>
+                  <th>실생활 기준</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="measure-unit-highlight">1 큰술</span></td>
+                  <td>약 15 ml</td>
+                  <td>밥숟가락 수북이 1개</td>
+                </tr>
+                <tr>
+                  <td><span class="measure-unit-highlight">1 작은술</span></td>
+                  <td>약 5 ml</td>
+                  <td>밥숟가락 평평하게 1/3</td>
+                </tr>
+                <tr>
+                  <td><span class="measure-unit-highlight">1 공기</span></td>
+                  <td>약 210 g</td>
+                  <td>밥그릇 1개 분량</td>
+                </tr>
+                <tr>
+                  <td><span class="measure-unit-highlight">약간</span></td>
+                  <td>1 g 미만</td>
+                  <td>손가락 두 개로 집은 양</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="section-card">
+            <h2 class="section-title">
+              <span class="s-icon">📋</span>
+              조리 순서
+            </h2>
+            <ol class="steps-list" id="steps-list"></ol>
+          </div>
+
+          <div class="section-card">
+            <h2 class="section-title">
+              <span class="s-icon">💡</span>
+              요리 팁
+            </h2>
+            <div class="tips-wrap" id="tips-wrap"></div>
           </div>
         </div>
 
-        <div class="difficulty-row">
-          <span class="stars" id="meta-difficulty">★☆☆</span>
-          <span class="diff-label" id="meta-diff-label">난이도: -</span>
-        </div>
+        <aside class="sidebar">
+          <div class="summary-card">
+            <p class="summary-card-title">📊 레시피 요약</p>
+            <div class="summary-stats">
+              <div class="stat-box">
+                <span class="stat-val" id="sum-time">-</span>
+                <span class="stat-lbl">조리 시간</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-val" id="sum-diff">-</span>
+                <span class="stat-lbl">난이도</span>
+              </div>
+            </div>
+          </div>
 
-        <div class="action-row">
-          <button class="btn-action" onclick="window.print()">🖨️ 인쇄하기</button>
-          <button class="btn-action" onclick="shareRecipe()">🔗 공유하기</button>
-          <button class="btn-action">♡ 저장하기</button>
-        </div>
+          <div class="related-card">
+            <h3 class="related-title">🍴 비슷한 레시피</h3>
+            <ul class="related-list" id="related-list"></ul>
+          </div>
+        </aside>
       </div>
-    </div>
+    </main>
 
-    <!-- INGREDIENTS -->
-    <div class="section-card">
-      <h2 class="section-title">
-        <span class="s-icon">🥕</span>
-        재료 목록
-      </h2>
-      <div class="servings-control">
-        <span class="servings-label">인분 조절</span>
-        <button class="servings-btn" onclick="changeServing(-1)">−</button>
-        <span class="servings-num" id="serving-num">1인분</span>
-        <button class="servings-btn" onclick="changeServing(1)">+</button>
-      </div>
-      <ul class="ingredient-list" id="ingredient-list"></ul>
-    </div>
+    <footer class="recipe-footer">
+      <p>
+        📋 본 페이지의 레시피는
+        <a
+          href="https://www.10000recipe.com"
+          target="_blank"
+          style="color: #ff9f45; text-decoration: none"
+          >만개의 레시피 (10000recipe.com)</a
+        >
+        를 참고하여 자취생 맞춤으로 재구성하였습니다.
+      </p>
+      <p style="margin-top: 4px">
+        © 2026 오늘 뭐 먹지? — WEB CLIENT COMPUTING 5조
+      </p>
+    </footer>
 
-    <!-- MEASUREMENT TABLE -->
-    <div class="section-card">
-      <h2 class="section-title">
-        <span class="s-icon">📏</span>
-        계량 단위 기준표
-      </h2>
-      <table class="measure-table">
-        <thead>
-          <tr>
-            <th>단위</th>
-            <th>ml / g 환산</th>
-            <th>실생활 기준</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="measure-unit-highlight">1 큰술</span></td>
-            <td>약 15 ml</td>
-            <td>밥숟가락 수북이 1개</td>
-          </tr>
-          <tr>
-            <td><span class="measure-unit-highlight">1 작은술</span></td>
-            <td>약 5 ml</td>
-            <td>밥숟가락 평평하게 1/3</td>
-          </tr>
-          <tr>
-            <td><span class="measure-unit-highlight">1 공기</span></td>
-            <td>약 210 g</td>
-            <td>밥그릇 1개 분량</td>
-          </tr>
-          <tr>
-            <td><span class="measure-unit-highlight">약간</span></td>
-            <td>1 g 미만</td>
-            <td>손가락 두 개로 집은 양</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <script src="js/foodData.js"></script>
+    <script src="js/foodOptions.js"></script>
 
-    <!-- STEPS -->
-    <div class="section-card">
-      <h2 class="section-title">
-        <span class="s-icon">📋</span>
-        조리 순서
-      </h2>
-      <ol class="steps-list" id="steps-list"></ol>
-    </div>
+    <script>
+      var params = new URLSearchParams(window.location.search);
+      var foodKey = params.get("food");
+      var menuKey = params.get("menu");
+      var serving = parseInt(params.get("serving")) || 1;
 
-    <!-- TIP -->
-    <div class="section-card">
-      <h2 class="section-title">
-        <span class="s-icon">💡</span>
-        요리 팁
-      </h2>
-      <div class="tips-wrap" id="tips-wrap"></div>
-    </div>
-    </div>
+      if (!foodKey && menuKey && menuKeyToFoodKey[menuKey]) {
+        foodKey = menuKeyToFoodKey[menuKey];
+      }
 
-    <aside class="sidebar">
+      if (!foodKey || !foodList[foodKey]) {
+        foodKey = "KIMCHI_RICE";
+      }
 
-    <!-- 요약 카드 -->
-    <div class="summary-card">
-      <p class="summary-card-title">📊 레시피 요약</p>
-      <div class="summary-stats">
-        <div class="stat-box">
-          <span class="stat-val" id="sum-time">-</span>
-          <span class="stat-lbl">조리 시간</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-val" id="sum-diff">-</span>
-          <span class="stat-lbl">난이도</span>
-        </div>
-      </div>
-    </div>
+      var food = foodList[foodKey];
 
-    <!-- 관련 레시피 -->
-    <div class="related-card">
-      <h3 class="related-title">🍴 비슷한 레시피</h3>
-      <ul class="related-list" id="related-list"></ul>
-    </div>
+      var fieldAliasMap = {
+        salinity: "saltyLevel",
+        finishMeal: "endMeal",
+        herbIngredient: "herb",
+        spicyIngredient: "spicyTopping",
+        extraIngredient: "topping",
+        rootVegetable: "topping",
+        mainIngredient: "topping",
+        mainProtein: "topping",
+        soupType: "topping",
+        spicyPepper: "spicyLevel",
+      };
 
-    </aside>
-  </div>
-</main>
+      var valueAliasMap = {
+        낮게: "싱겁게",
+        높게: "짭짤하게",
+        "얼큰 육수": "얼큰한 육수",
+        "반반 육수": "얼큰한 육수",
+        "반숙 계란": "반숙",
+        "완숙 계란": "완숙",
+        페퍼론치노: "페페론치노",
+        빼기: "안 맵게",
+        조금: "보통",
+        넉넉하게: "칼칼하게",
+        고기: "돼지고기",
+        "둘 다": "둘 다",
+      };
 
-<footer class="recipe-footer">
-  <p>📋 본 페이지의 레시피는 <a href="https://www.10000recipe.com" target="_blank" style="color: #FF9F45; text-decoration: none;">만개의 레시피 (10000recipe.com)</a> 를 참고하여 자취생 맞춤으로 재구성하였습니다.</p>
-  <p style="margin-top: 4px;">© 2026 오늘 뭐 먹지? — WEB CLIENT COMPUTING 5조</p>
-</footer>
+      function normalizeValue(value) {
+        return valueAliasMap[value] || value;
+      }
 
-<script src="js/foodData.js"></script>
+      function addFormParam(key, value) {
+        if (!value) return;
 
-<script>
-  var params = new URLSearchParams(window.location.search);
-  var foodKey = params.get('food');
-  var menuParam = params.get('menu');
+        var normalizedKey = fieldAliasMap[key] || key;
+        var normalizedValue = normalizeValue(value);
 
-  if (!foodKey && menuParam && menuKeyToFoodKey[menuParam]) {
-    foodKey = menuKeyToFoodKey[menuParam];
-  }
+        if (normalizedKey === "topping") {
+          if (!Array.isArray(formParams.topping)) {
+            formParams.topping = [];
+          }
 
-  if (!foodKey || !foodList[foodKey]) {
-    foodKey = 'KIMCHI_RICE';
-  }
+          if (normalizedValue === "둘 다") {
+            if (key === "rootVegetable") {
+              formParams.topping.push("감자", "고구마");
+            } else if (key === "mainProtein") {
+              formParams.topping.push("돼지고기", "햄");
+            } else if (key === "soupType") {
+              formParams.topping.push("조개", "소고기");
+            } else if (key === "extraIngredient") {
+              formParams.topping.push("베이컨", "새우");
+            }
+          } else if (
+            normalizedValue !== "없음" &&
+            normalizedValue !== "상관없음"
+          ) {
+            formParams.topping.push(normalizedValue);
+          }
 
-  var food = foodList[foodKey];
+          return;
+        }
 
-  function renderPage() {
-    document.title = '오늘 뭐 먹지? - ' + food.name;
-    document.getElementById('breadcrumb-name').textContent = food.name;
-    document.getElementById('recipe-title').textContent = food.name;
-    document.getElementById('recipe-category').textContent = food.category;
-    document.getElementById('recipe-desc').textContent = food.description;
+        formParams[normalizedKey] = normalizedValue;
+      }
 
-    document.getElementById('meta-time').textContent = food.time;
-    document.getElementById('meta-difficulty').textContent = food.difficulty;
-    document.getElementById('meta-diff-label').textContent = '난이도: ' + food.diffLabel;
+      var formParams = {};
 
-    document.getElementById('sum-time').textContent = food.time;
-    document.getElementById('sum-diff').textContent = food.difficulty;
+      if (menuKey) {
+        params.forEach(function (value, key) {
+          if (
+            key !== "food" &&
+            key !== "menu" &&
+            key !== "source" &&
+            key !== "serving"
+          ) {
+            addFormParam(key, value);
+          }
+        });
 
-    var img = document.getElementById('hero-img');
-    var placeholder = document.getElementById('hero-placeholder');
-    img.src = food.src;
-    img.alt = food.name;
-    img.onerror = function() {
-      img.style.display = 'none';
-      placeholder.style.display = 'flex';
-      document.getElementById('hero-emoji').textContent = food.emoji;
-    };
-    img.onload = function() {
-      img.style.display = 'block';
-      placeholder.style.display = 'none';
-    };
+        var toppingRaw = params.get("topping");
+        if (toppingRaw) {
+          formParams.topping = toppingRaw.split(",").map(function (item) {
+            return normalizeValue(item.trim());
+          });
+        }
+      }
 
-    var ingList = document.getElementById('ingredient-list');
-    ingList.innerHTML = '';
-    food.ingredients.forEach(function(ing) {
-      var li = document.createElement('li');
-      li.className = 'ingredient-item';
-      li.innerHTML =
-        '<span class="ing-name"><span class="ing-dot"></span> ' + ing.name + '</span>' +
-        '<span><span class="ing-amount" data-base="' + ing.amount + '">' + ing.amount + '</span>' +
-        '<span class="ing-unit"> ' + ing.unit + '</span></span>';
-      ingList.appendChild(li);
-    });
+      function buildIngredients() {
+        var list = food.ingredients.map(function (ing) {
+          return {
+            name: ing.name,
+            amount: parseFloat((ing.amount * serving).toFixed(1)),
+            unit: ing.unit,
+            base: ing.amount,
+          };
+        });
 
-    var stepsList = document.getElementById('steps-list');
-    stepsList.innerHTML = '';
-    food.steps.forEach(function(step, i) {
-      var li = document.createElement('li');
-      li.className = 'step-item';
-      var timeBadge = step.time ? '<span class="step-time-badge">⏱️ ' + step.time + '</span>' : '';
-      li.innerHTML =
-        '<span class="step-num">' + (i + 1) + '</span>' +
-        '<div class="step-content">' +
-          '<p class="step-text"><strong>' + step.title + ':</strong> ' + step.text + '</p>' +
-          timeBadge +
-        '</div>';
-      stepsList.appendChild(li);
-    });
+        var spicy = spicyModifiers[formParams.spicyLevel];
 
-    var tipsWrap = document.getElementById('tips-wrap');
-    tipsWrap.innerHTML = '';
-    food.tips.forEach(function(tip) {
-      var div = document.createElement('div');
-      div.className = 'tip-box';
-      div.innerHTML =
-        '<span class="tip-icon">' + tip.icon + '</span>' +
-        '<div class="tip-content"><strong>' + tip.title + '</strong>' + tip.text + '</div>';
-      tipsWrap.appendChild(div);
-    });
+        if (spicy && spicy.ingredientMod) {
+          Object.keys(spicy.ingredientMod).forEach(function (ingName) {
+            var delta = spicy.ingredientMod[ingName] * serving;
+            var found = list.find(function (i) {
+              return i.name.indexOf(ingName) !== -1;
+            });
 
-    var relatedList = document.getElementById('related-list');
-    relatedList.innerHTML = '';
-    food.related.forEach(function(key) {
-      var rel = foodList[key];
-      if (!rel) return;
-      var li = document.createElement('li');
-      li.className = 'related-item';
-      li.onclick = function() { window.location.href = 'recipe.html?food=' + key; };
-      li.innerHTML =
-        '<span class="related-emoji">' + rel.emoji + '</span>' +
-        '<div class="related-info">' +
-          '<span class="related-name">' + rel.name + '</span>' +
-          '<span class="related-meta">⏱️ ' + rel.time + ' · ' + rel.difficulty + '</span>' +
-        '</div>';
-      relatedList.appendChild(li);
-    });
-  }
+            if (found) {
+              found.amount = Math.max(
+                0,
+                parseFloat((found.amount + delta).toFixed(1)),
+              );
+            }
+          });
 
-  var servings = 1;
+          if (spicy.extraIngredients) {
+            spicy.extraIngredients.forEach(function (ei) {
+              if (
+                !list.find(function (i) {
+                  return i.name === ei.name;
+                })
+              ) {
+                list.push({
+                  name: ei.name,
+                  amount: parseFloat((ei.amount * serving).toFixed(1)),
+                  unit: ei.unit,
+                });
+              }
+            });
+          }
+        }
 
-  function changeServing(delta) {
-    servings = Math.max(1, Math.min(10, servings + delta));
-    document.getElementById('serving-num').textContent = servings + '인분';
-    document.getElementById('serving-display').textContent = servings;
-    document.querySelectorAll('.ing-amount').forEach(function(el) {
-      var base = parseFloat(el.dataset.base);
-      var val = base * servings;
-      el.textContent = Number.isInteger(val) ? val : parseFloat(val.toFixed(1));
-    });
-  }
+        var spicyTop = spicyToppingModifiers[formParams.spicyTopping];
 
-  function shareRecipe() {
-    if (navigator.share) {
-      navigator.share({ title: food.name + ' 레시피', url: location.href });
-    } else {
-      alert('링크가 복사됐어요!');
-    }
-  }
+        if (spicyTop && spicyTop.extraIngredients) {
+          spicyTop.extraIngredients.forEach(function (ei) {
+            if (
+              !list.find(function (i) {
+                return i.name === ei.name;
+              })
+            ) {
+              list.push({
+                name: ei.name,
+                amount: parseFloat((ei.amount * serving).toFixed(1)),
+                unit: ei.unit,
+              });
+            }
+          });
+        }
 
-  renderPage();
-</script>
-<script src="js/main.js"></script>
+        if (Array.isArray(formParams.topping)) {
+          formParams.topping.forEach(function (t) {
+            var info = toppingIngredients[t];
 
-</body>
+            if (
+              info &&
+              !list.find(function (i) {
+                return i.name === info.name;
+              })
+            ) {
+              list.push({
+                name: info.name,
+                amount: parseFloat((info.amount * serving).toFixed(1)),
+                unit: info.unit,
+              });
+            }
+          });
+        }
+
+        return list;
+      }
+
+      function buildOptionTips() {
+        var tips = [];
+
+        var spicy = spicyModifiers[formParams.spicyLevel];
+        if (spicy) {
+          tips.push({
+            icon: "🌶️",
+            title: "맵기: " + formParams.spicyLevel,
+            text: spicy.tip,
+          });
+        }
+
+        var salty = saltyModifiers[formParams.saltyLevel];
+        if (salty) {
+          tips.push({
+            icon: "🧂",
+            title: "염도: " + formParams.saltyLevel,
+            text: salty.tip,
+          });
+        }
+
+        var egg = eggStyleModifiers[formParams.eggStyle];
+        if (egg) {
+          tips.push({
+            icon: "🥚",
+            title: "계란: " + formParams.eggStyle,
+            text: egg.tip,
+          });
+        }
+
+        if (
+          formParams.brothType &&
+          shabuModifiers.brothType[formParams.brothType]
+        ) {
+          tips.push({
+            icon: "🍵",
+            title: "국물: " + formParams.brothType,
+            text: shabuModifiers.brothType[formParams.brothType].tip,
+          });
+        }
+
+        if (formParams.sauce && shabuModifiers.sauce[formParams.sauce]) {
+          tips.push({
+            icon: "🥣",
+            title: "소스: " + formParams.sauce,
+            text: shabuModifiers.sauce[formParams.sauce].tip,
+          });
+        }
+
+        if (
+          formParams.endMeal &&
+          shabuModifiers.endMeal &&
+          shabuModifiers.endMeal[formParams.endMeal]
+        ) {
+          tips.push({
+            icon: "🍚",
+            title: "마무리: " + formParams.endMeal,
+            text: shabuModifiers.endMeal[formParams.endMeal].tip,
+          });
+        }
+
+        if (
+          formParams.endMeal &&
+          dakEndMealModifiers[formParams.endMeal] &&
+          dakEndMealModifiers[formParams.endMeal].tip
+        ) {
+          tips.push({
+            icon: "🍚",
+            title: "마무리: " + formParams.endMeal,
+            text: dakEndMealModifiers[formParams.endMeal].tip,
+          });
+        }
+
+        var soup = soupAmountModifiers[formParams.soupAmount];
+        if (soup) {
+          tips.push({
+            icon: "🥣",
+            title: "국물: " + formParams.soupAmount,
+            text: soup.tip,
+          });
+        }
+
+        var herb = herbModifiers[formParams.herb];
+        if (herb && herb.tip) {
+          tips.push({
+            icon: "🌿",
+            title: "향 재료: " + formParams.herb,
+            text: herb.tip,
+          });
+        }
+
+        var spicyT = spicyToppingModifiers[formParams.spicyTopping];
+        if (spicyT && spicyT.tip) {
+          tips.push({
+            icon: "🌶️",
+            title: "매운 재료: " + formParams.spicyTopping,
+            text: spicyT.tip,
+          });
+        }
+
+        if (
+          Array.isArray(formParams.topping) &&
+          formParams.topping.length > 0
+        ) {
+          tips.push({
+            icon: "🍴",
+            title: "선택한 토핑",
+            text: formParams.topping.join(", ") + "을(를) 추가해주세요.",
+          });
+        }
+
+        return tips;
+      }
+
+      function renderPage() {
+        document.title = "오늘 뭐 먹지? - " + food.name;
+
+        document.getElementById("breadcrumb-name").textContent = food.name;
+        document.getElementById("recipe-title").textContent = food.name;
+        document.getElementById("recipe-category").textContent = food.category;
+        document.getElementById("recipe-desc").textContent = food.description;
+        document.getElementById("meta-time").textContent = food.time;
+        document.getElementById("meta-difficulty").textContent =
+          food.difficulty;
+        document.getElementById("meta-diff-label").textContent =
+          "난이도: " + food.diffLabel;
+        document.getElementById("sum-time").textContent = food.time;
+        document.getElementById("sum-diff").textContent = food.difficulty;
+        document.getElementById("serving-display").textContent = serving;
+        document.getElementById("serving-badge").textContent =
+          serving + "인분 기준";
+
+        var img = document.getElementById("hero-img");
+        var placeholder = document.getElementById("hero-placeholder");
+
+        img.src = food.src;
+        img.alt = food.name;
+
+        img.onerror = function () {
+          img.style.display = "none";
+          placeholder.style.display = "flex";
+          document.getElementById("hero-emoji").textContent = food.emoji;
+        };
+
+        img.onload = function () {
+          img.style.display = "block";
+          placeholder.style.display = "none";
+        };
+
+        var optionKeys = Object.keys(formParams).filter(function (k) {
+          return k !== "topping";
+        });
+
+        var hasOptions =
+          optionKeys.length > 0 ||
+          (Array.isArray(formParams.topping) && formParams.topping.length > 0);
+
+        if (hasOptions) {
+          var optBox = document.getElementById("selected-options");
+          var tagsWrap = document.getElementById("options-tags");
+
+          optBox.style.display = "block";
+          tagsWrap.innerHTML = "";
+
+          optionKeys.forEach(function (k) {
+            var tag = document.createElement("span");
+            tag.className = "option-tag";
+            tag.textContent = formParams[k];
+            tagsWrap.appendChild(tag);
+          });
+
+          if (Array.isArray(formParams.topping)) {
+            formParams.topping.forEach(function (t) {
+              var tag = document.createElement("span");
+              tag.className = "option-tag option-tag-topping";
+              tag.textContent = t;
+              tagsWrap.appendChild(tag);
+            });
+          }
+        }
+
+        var optionTips = buildOptionTips();
+
+        if (optionTips.length > 0) {
+          document.getElementById("option-tips-card").style.display = "block";
+
+          var optionTipsWrap = document.getElementById("option-tips-wrap");
+          optionTipsWrap.innerHTML = "";
+
+          optionTips.forEach(function (tip) {
+            var div = document.createElement("div");
+            div.className = "tip-box";
+            div.innerHTML =
+              '<span class="tip-icon">' +
+              tip.icon +
+              "</span>" +
+              '<div class="tip-content"><strong>' +
+              tip.title +
+              "</strong>" +
+              tip.text +
+              "</div>";
+            optionTipsWrap.appendChild(div);
+          });
+        }
+
+        var ingList = document.getElementById("ingredient-list");
+        ingList.innerHTML = "";
+
+        buildIngredients().forEach(function (ing) {
+          var li = document.createElement("li");
+          li.className = "ingredient-item";
+          li.innerHTML =
+            '<span class="ing-name"><span class="ing-dot"></span> ' +
+            ing.name +
+            "</span>" +
+            '<span><span class="ing-amount">' +
+            ing.amount +
+            "</span>" +
+            '<span class="ing-unit"> ' +
+            ing.unit +
+            "</span></span>";
+          ingList.appendChild(li);
+        });
+
+        var stepsList = document.getElementById("steps-list");
+        stepsList.innerHTML = "";
+
+        var steps = food.steps.map(function (s) {
+          return {
+            title: s.title,
+            text: s.text,
+            time: s.time || null,
+            extra: false,
+          };
+        });
+
+        if (food.optionSteps) {
+          var removedIndexes = [];
+
+          Object.keys(food.optionSteps).forEach(function (fieldId) {
+            var fieldOptions = food.optionSteps[fieldId];
+            var selectedVal = formParams[fieldId];
+
+            if (!fieldOptions) return;
+
+            if (fieldId === "topping" && Array.isArray(formParams.topping)) {
+              formParams.topping.forEach(function (t) {
+                var mod = fieldOptions[t];
+                if (!mod) return;
+
+                if (mod.afterStep !== undefined) {
+                  steps.splice(mod.afterStep + 1, 0, {
+                    title: "➕ 토핑 (" + t + ")",
+                    text: mod.text,
+                    time: mod.time || null,
+                    extra: true,
+                  });
+                }
+              });
+              return;
+            }
+
+            if (!selectedVal || !fieldOptions[selectedVal]) return;
+
+            var mod = fieldOptions[selectedVal];
+            if (!mod) return;
+
+            if (mod.removeStep !== undefined) {
+              removedIndexes.push(mod.removeStep);
+            } else if (mod.modifyStep !== undefined) {
+              if (steps[mod.modifyStep]) {
+                steps[mod.modifyStep].text = mod.text;
+                if (mod.time) {
+                  steps[mod.modifyStep].time = mod.time;
+                }
+              }
+            } else if (mod.afterStep !== undefined) {
+              steps.splice(mod.afterStep + 1, 0, {
+                title: "💡 옵션 가이드",
+                text: mod.text,
+                time: mod.time || null,
+                extra: true,
+              });
+            }
+          });
+
+          steps = steps.filter(function (_, idx) {
+            return removedIndexes.indexOf(idx) === -1;
+          });
+        }
+
+        steps.forEach(function (step, i) {
+          var li = document.createElement("li");
+          li.className = "step-item" + (step.extra ? " step-item-extra" : "");
+
+          var timeBadge = step.time
+            ? '<span class="step-time-badge">⏱️ ' + step.time + "</span>"
+            : "";
+
+          li.innerHTML =
+            '<span class="step-num' +
+            (step.extra ? " step-num-extra" : "") +
+            '">' +
+            (step.extra ? "💡" : i + 1) +
+            "</span>" +
+            '<div class="step-content">' +
+            '<p class="step-text"><strong>' +
+            step.title +
+            ":</strong> " +
+            step.text +
+            "</p>" +
+            timeBadge +
+            "</div>";
+
+          stepsList.appendChild(li);
+        });
+
+        var tipsWrap = document.getElementById("tips-wrap");
+        tipsWrap.innerHTML = "";
+
+        food.tips.forEach(function (tip) {
+          var div = document.createElement("div");
+          div.className = "tip-box";
+          div.innerHTML =
+            '<span class="tip-icon">' +
+            tip.icon +
+            "</span>" +
+            '<div class="tip-content"><strong>' +
+            tip.title +
+            "</strong>" +
+            tip.text +
+            "</div>";
+          tipsWrap.appendChild(div);
+        });
+
+        var relatedList = document.getElementById("related-list");
+        relatedList.innerHTML = "";
+
+        food.related.forEach(function (key) {
+          var rel = foodList[key];
+          if (!rel) return;
+
+          var relMenuKey = Object.keys(menuKeyToFoodKey).find(function (mk) {
+            return menuKeyToFoodKey[mk] === key;
+          });
+
+          var li = document.createElement("li");
+          li.className = "related-item";
+
+          li.onclick = function () {
+            if (relMenuKey) {
+              window.location.href =
+                "form.html?menu=" + relMenuKey + "&source=related";
+            } else {
+              window.location.href = "recipe.html?food=" + key;
+            }
+          };
+
+          li.innerHTML =
+            '<span class="related-emoji">' +
+            rel.emoji +
+            "</span>" +
+            '<div class="related-info">' +
+            '<span class="related-name">' +
+            rel.name +
+            "</span>" +
+            '<span class="related-meta">⏱️ ' +
+            rel.time +
+            " · " +
+            rel.difficulty +
+            "</span>" +
+            "</div>";
+
+          relatedList.appendChild(li);
+        });
+      }
+
+      function shareRecipe() {
+        if (navigator.share) {
+          navigator.share({
+            title: food.name + " 레시피",
+            url: location.href,
+          });
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(location.href);
+          alert("링크가 복사됐어요!");
+        } else {
+          alert(location.href);
+        }
+      }
+
+      renderPage();
+    </script>
+
+    <script src="js/main.js"></script>
+  </body>
 </html>

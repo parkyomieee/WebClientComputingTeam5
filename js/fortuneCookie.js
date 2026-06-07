@@ -19,8 +19,10 @@ const menus = [
 ];
 
 let selectedMenu = null;
+let isDrawing = false;
 
 const drawCookieBtn = document.getElementById("drawCookieBtn");
+const heroPicture = document.getElementById("fortuneCookieHeroPicture");
 const fortuneModal = document.getElementById("fortuneModal");
 const fortuneModalBox = document.getElementById("fortuneModalBox");
 const modalFortuneText = document.getElementById("modalFortuneText");
@@ -29,13 +31,51 @@ const modalMenuText = document.getElementById("modalMenuText");
 const recipeSelectBtn = document.getElementById("recipeSelectBtn");
 const modalCloseBtn = document.getElementById("modalCloseBtn");
 
+const SHAKE_DURATION = 550;
+const SHAKE_PAUSE = 1000;
+
 function pickRandomItem(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
-function openFortuneModal() {
+function setModalOrigin(originEl) {
+  if (!fortuneModalBox || !originEl) return;
+
+  const rect = originEl.getBoundingClientRect();
+  const originX = rect.left + rect.width / 2;
+  const originY = rect.top + rect.height / 2;
+
+  fortuneModalBox.style.setProperty(
+    "--modal-from-x",
+    `${originX - window.innerWidth / 2}px`,
+  );
+  fortuneModalBox.style.setProperty(
+    "--modal-from-y",
+    `${originY - window.innerHeight / 2}px`,
+  );
+}
+
+function resetModalAnimation() {
+  if (!fortuneModalBox) return;
+  fortuneModalBox.classList.remove("is-emerging");
+}
+
+function shakeHeroPicture() {
+  if (!heroPicture) return;
+
+  heroPicture.classList.remove("is-shaking");
+  void heroPicture.offsetWidth;
+  heroPicture.classList.add("is-shaking");
+
+  window.setTimeout(() => {
+    heroPicture.classList.remove("is-shaking");
+  }, SHAKE_DURATION);
+}
+
+function openFortuneModal(originEl) {
   if (
     !fortuneModal ||
+    !fortuneModalBox ||
     !modalFortuneText ||
     !modalMenuEmoji ||
     !modalMenuText
@@ -44,20 +84,52 @@ function openFortuneModal() {
   }
 
   selectedMenu = pickRandomItem(menus);
-
   modalFortuneText.textContent = pickRandomItem(fortunes);
   modalMenuEmoji.textContent = selectedMenu.emoji;
   modalMenuText.textContent = selectedMenu.name;
+
+  resetModalAnimation();
+  setModalOrigin(originEl);
   fortuneModal.classList.add("show");
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      fortuneModalBox.classList.add("is-emerging");
+    });
+  });
 }
 
 function closeFortuneModal() {
   if (!fortuneModal) return;
+
+  resetModalAnimation();
   fortuneModal.classList.remove("show");
+  isDrawing = false;
+}
+
+function handleDrawCookie() {
+  if (isDrawing || fortuneModal?.classList.contains("show")) return;
+
+  isDrawing = true;
+
+  shakeHeroPicture();
+
+  window.setTimeout(() => {
+    shakeHeroPicture();
+
+    window.setTimeout(() => {
+      openFortuneModal(heroPicture);
+      isDrawing = false;
+    }, SHAKE_DURATION);
+  }, SHAKE_DURATION + SHAKE_PAUSE);
 }
 
 if (drawCookieBtn) {
-  drawCookieBtn.addEventListener("click", openFortuneModal);
+  drawCookieBtn.addEventListener("click", handleDrawCookie);
+}
+
+if (heroPicture) {
+  heroPicture.addEventListener("click", handleDrawCookie);
 }
 
 if (modalCloseBtn) {
@@ -82,13 +154,13 @@ if (fortuneModal) {
 }
 
 if (fortuneModalBox) {
-  fortuneModalBox.addEventListener("click", (e) => {
-    e.stopPropagation();
+  fortuneModalBox.addEventListener("click", (event) => {
+    event.stopPropagation();
   });
 }
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
     closeFortuneModal();
   }
 });

@@ -166,7 +166,9 @@
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .roulette-spin-btn {
@@ -187,7 +189,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--point-color-3);
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+}
+
+.roulette-form-link:hover {
+  background-color: var(--main-color);
   color: var(--white-text-color);
 }
 
