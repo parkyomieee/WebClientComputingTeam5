@@ -18,7 +18,7 @@ const menuForms = {
       {
         id: "spicyLevel",
         label: "맵기 단계",
-        options: ["순한맛", "보통맛", "매운맛", "아주 매운맛"],
+        options: ["순한맛", "초보맛", "덜매운맛", "매운맛"],
       },
       {
         id: "saltyLevel",
@@ -39,7 +39,7 @@ const menuForms = {
       {
         id: "spicyLevel",
         label: "맵기 단계",
-        options: ["순한맛", "보통맛", "매운맛"],
+        options: ["순한맛", "초보맛", "덜매운맛", "매운맛"],
       },
       {
         id: "topping",
@@ -55,7 +55,7 @@ const menuForms = {
       {
         id: "spicyLevel",
         label: "맵기 단계",
-        options: ["순한맛", "보통맛", "매운맛"],
+        options: ["순한맛", "초보맛", "덜매운맛", "매운맛"],
       },
       {
         id: "saltyLevel",
@@ -102,7 +102,7 @@ const menuForms = {
       {
         id: "spicyLevel",
         label: "맵기 단계",
-        options: ["안 맵게", "보통", "칼칼하게"],
+        options: ["순한맛", "초보맛", "덜매운맛", "매운맛"],
       },
       {
         id: "saltyLevel",
@@ -123,7 +123,7 @@ const menuForms = {
       {
         id: "spicyLevel",
         label: "맵기 단계",
-        options: ["순한맛", "보통맛", "매운맛"],
+        options: ["순한맛", "초보맛", "덜매운맛", "매운맛"],
       },
       {
         id: "saltyLevel",

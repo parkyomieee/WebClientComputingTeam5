@@ -139,6 +139,8 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding-top: 10px;
+  margin-bottom: 12px;
 }
 
 #formPage .checkbox-group {
@@ -173,7 +175,7 @@
 #formPage .checkbox-item label {
   margin: 0;
   line-height: 1.2;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
 }
 
