@@ -44,12 +44,7 @@ const menuForms = {
       {
         id: "topping",
         label: "토핑",
-        options: ["햄", "참치", "소시지", "돼지고기", "치즈", "양파", "당근", "김가루"],
-      },
-      {
-        id: "eggStyle",
-        label: "계란",
-        options: ["없음", "반숙", "완숙"],
+        options: ["햄", "참치", "소시지", "돼지고기", "치즈", "양파", "당근", "김가루", "계란"],
       },
     ],
   },
@@ -217,9 +212,30 @@ if (!form) {
     }
 
     selectedMenuName.textContent = menu.label;
+    const multiCheckboxFields = ['topping', 'spicyTopping', 'herb', 'sauce'];
+
     customFieldset.hidden = false;
     customFields.innerHTML = menu.fields
       .map((field) => {
+        if (multiCheckboxFields.includes(field.id)) {
+          const checkboxes = field.options
+            .map(
+              (option, index) => `
+          <div class="checkbox-item">
+            <input type="checkbox" id="${field.id}-${index}" name="${field.id}" value="${option}">
+            <label for="${field.id}-${index}">${option}</label>
+          </div>`,
+            )
+            .join("");
+
+          return `
+      <label class="field-label">${field.label}</label>
+      <div class="checkbox-field">
+        ${checkboxes}
+      </div>
+    `;
+        }
+
         const options = field.options
           .map((option) => `<option value="${option}">${option}</option>`)
           .join("");
@@ -254,11 +270,12 @@ if (!form) {
   function getSelectedOptions(menuKey) {
     const menu = menuForms[menuKey];
     const data = new FormData(form);
+    const multiCheckboxFields = ['topping', 'spicyTopping', 'herb'];
 
     return menu.fields.map((field) => ({
       id: field.id,
       label: field.label,
-      value: data.get(field.id),
+      value: multiCheckboxFields.includes(field.id) ? data.getAll(field.id) : data.get(field.id),
     }));
   }
 
@@ -267,9 +284,12 @@ if (!form) {
       return "추천받은 메뉴를 선택해주세요.";
     }
 
-    const hasEmptyOption = getSelectedOptions(menuKey).some(
-      (option) => !option.value,
-    );
+    const hasEmptyOption = getSelectedOptions(menuKey).some((option) => {
+      if (Array.isArray(option.value)) {
+        return option.value.length === 0;
+      }
+      return !option.value;
+    });
 
     if (hasEmptyOption) {
       return "메뉴별 세부 선택을 모두 입력해주세요.";
@@ -294,7 +314,13 @@ if (!form) {
     }
 
     getSelectedOptions(menuKey).forEach((option) => {
-      recipeParams.set(option.id, option.value);
+      if (Array.isArray(option.value)) {
+        option.value.forEach((value) => {
+          recipeParams.append(option.id, value);
+        });
+      } else {
+        recipeParams.set(option.id, option.value);
+      }
     });
 
     window.location.href = `${menu.recipeUrl}?${recipeParams.toString()}`;
