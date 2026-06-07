@@ -129,7 +129,40 @@
 
 
 /*-------------------------------------*/
-/* 맞추기 게임 결과 */
+/* 맞추기 게임 결과 (모달) */
+#game-end.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 24px;
+}
+
+#game-end.modal-overlay.show {
+    display: flex;
+}
+
+#game-end .modal-content {
+    width: min(420px, 100%);
+    padding: 28px 24px;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+#game-end .game-food-image {
+    width: 100%;
+    max-width: 280px;
+}
+
 .game-result {
     font-weight: 900;
     font-size: 20px;
@@ -140,7 +173,7 @@
 }
 
 .recipe-redirect-btn {
-    width: 50%;
+    width: 200px;
     padding: 10px 16px;
     border: none;
     border-radius: 10px;
@@ -167,6 +200,13 @@
     width: 80%;
     min-width: 300px;
     max-width: 800px;
+    border-radius: var(--radius-lg);
+    border: solid var(--color-primary);
+    transition:
+        color var(--transition-base),
+        transform var(--transition-base),
+        box-shadow var(--transition-base);
+
     object-fit: cover;
 }
 
@@ -216,7 +256,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
 
     gap: 1.25vw;
 }
@@ -271,6 +311,8 @@
     line-height: 1.5;
     color: var(--color-text-muted);
     text-align: center;
+
+    height: 4rem;
 }
 
 .team-worker-link {

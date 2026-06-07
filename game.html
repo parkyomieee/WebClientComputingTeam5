@@ -103,24 +103,17 @@
             <li class="game-select-opt">PlaceHolder</li>
           </ol>
         </section>
-
-        <section class="game-content hidden" id="game-end">
-          <div class="game-title">정답 공개</div>
-          <div>
-            <img
-              class="game-food-image"
-              src="./assets/image/game/placeholder.png"
-              alt="food_image"
-            />
-          </div>
-          <div class="game-result">
-            <span class="game-result-succ">(성공! or 실패!)</span>
-            <span> </span> <span class="game-result-menu">메뉴명</span>
-          </div>
-          <button class="recipe-redirect-btn">레시피 보러가기</button>
-        </section>
-      </section>
+    </section>
     </main>
+
+    <div class="modal-overlay" id="game-end">
+        <div class="modal-content">
+            <div class="game-title">정답 공개</div>
+            <div><img class="game-food-image" src="./assets/image/game/placeholder.png" alt="food_image"></div>
+            <div class="game-result"><span class="game-result-succ">(성공! or 실패!)</span> <span> </span> <span class="game-result-menu">메뉴명</span></div>
+            <button class="recipe-redirect-btn">레시피 보러가기</button>
+        </div>
+    </div>
 
     <div class="modal-overlay" id="winner-modal">
       <div class="modal-content">

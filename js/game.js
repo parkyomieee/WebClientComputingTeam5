@@ -88,13 +88,14 @@ function set_game_result(is_succ, name) {
   }
 
   gameResult.menu.textContent = name;
-  gameMain.classList.add("hidden");
-  gameEnd.classList.remove("hidden");
+  gameEnd.classList.add("show");
 }
 
-if (gameMain && gameSelect && gameGrid) {
-  document.addEventListener("DOMContentLoaded", () => {
-    const answer = get_random_food();
+function init_guess_game() {
+  gameMain.classList.remove("hidden");
+  gameEnd.classList.remove("show");
+
+  const answer = get_random_food();
     const candiateList = get_candidate_list();
 
     for (let i = 0; i < candiateList.length; i++) {
@@ -167,5 +168,21 @@ if (gameMain && gameSelect && gameGrid) {
       el.classList.add(effect);
       el.style.setProperty("--random-duration", `${Math.random() * 2 + 1}s`);
     });
-  });
 }
+
+//TODO: 
+// game-nav.js에서 호출되게 하고, 이 구문 삭제
+if (gameEnd) {
+  gameEnd.addEventListener("click", () => {
+    gameEnd.classList.remove("show");
+  });
+
+  const gameEndContent = gameEnd.querySelector(".modal-content");
+  if (gameEndContent) {
+    gameEndContent.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", init_guess_game);
